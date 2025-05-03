@@ -17,15 +17,32 @@ let zombieTile = '🧟‍♂️';
 let player = '👻';
 
 function startLevel() {
-    mazeWidth = 13 + level * 2;
-    mazeHeight = 13 + level * 2;
+    const gridIncrement = Math.floor((level - 1) / 3);
+    mazeWidth = 13 + gridIncrement * 2;
+    mazeHeight = 13 + gridIncrement * 2;
+
+    const baseFontSize = 16;
+    const fontSizeDecrement = Math.floor((level - 1) / 3);
+    const fontSize = Math.max(8, baseFontSize - fontSizeDecrement * 2);
+
+    const mazeElement = document.getElementById('maze');
+    mazeElement.style.fontSize = `${fontSize}px`;
+
     flagsCollected = 0;
     flagsNeeded = 3 + level * 2;
     document.getElementById('level').textContent = level;
     document.getElementById('flags').textContent = `${flagsCollected}/${flagsNeeded}`;
+
     generateMaze();
     drawMaze();
 }
+
+function drawMaze() {
+    const mazeElement = document.getElementById('maze');
+    mazeElement.textContent = maze.map(row => row.join('')).join('\n');
+}
+
+
 
 function generateMaze() {
     maze = [];
@@ -53,9 +70,6 @@ function generateMaze() {
     }
 }
 
-function drawMaze() {
-    document.getElementById('maze').textContent = maze.map(row => row.join('')).join('\n');
-}
 
 function move(dx, dy) {
     const { x, y } = playerPosition;
