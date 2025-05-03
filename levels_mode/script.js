@@ -1,4 +1,3 @@
-
 let mazeWidth = 15;
 let mazeHeight = 15;
 let level = 1;
@@ -8,6 +7,7 @@ let playerPosition = { x: 1, y: 1 };
 let maze = [];
 let inventory = [];
 const inventorySize = 3;
+let fullscreen = false;
 
 let floorTile = '. ';
 let wallTile = '⛰️';
@@ -105,4 +105,44 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-window.onload = startLevel;
+function saveGameState() {
+    localStorage.setItem('gameState', JSON.stringify({
+        fullscreen
+    }));
+}
+
+function loadGameState() {
+    const saved = localStorage.getItem('gameState');
+    if (saved) {
+        const state = JSON.parse(saved);
+        fullscreen = state.fullscreen;
+    }
+}
+
+window.onload = function () {
+    loadGameState()
+    startLevel()
+    fullScreen(fullscreen)
+}
+
+function fullScreen(isEnable) {
+    if (!isEnable) return;
+    let element = document.documentElement;
+    if (element.requestFullscreen) element.requestFullscreen();
+    else if (element.webkitRequestFullscreen) element.webkitRequestFullscreen();
+    else if (element.mozRequestFullScreen) element.mozRequestFullScreen();
+    else if (element.msRequestFullscreen) element.msRequestFullscreen();
+}
+
+let inputDetected = false;
+function handleInput() {
+    if (!inputDetected) {
+        fullScreen(fullscreen);
+        inputDetected = true;
+    }
+}
+document.addEventListener('keydown', handleInput);
+document.addEventListener('click', handleInput);
+document.addEventListener('touchstart', handleInput);
+document.addEventListener('touchmove', handleInput);
+document.addEventListener('touchend', handleInput);
