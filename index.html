@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASCII Maze</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<div id="startMenu">
+  <h1 class="title">ASCII Maze</h1>
+  <form id="modeSelect">
+    <label><input type="radio" name="mode" value="endless" checked> Бесконечный</label>
+    <label><input type="radio" name="mode" value="levels"> Подземелье</label>
+    <label><input type="radio" name="mode" value="time"> На время</label>
+    <button type="submit">Начать</button>
+  </form>
+
+  <div id="controls">
+    <h1 class="title">Управление</h1>
+    <pre id="controls_showcase">   W   
+A S D</pre>
+    <form>
+      <label><input type="checkbox" id="fullscreen" name="fullscreen"> Полноэкранный режим</label>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

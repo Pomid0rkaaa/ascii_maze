@@ -1,0 +1,122 @@
+pre {
+  font-family: monospace;
+  white-space: pre-wrap;
+  color: #bbbbbb;
+  background-color: #222222;
+  border: none;
+  border-radius: 5px;
+}
+
+#maze {
+  font-size: 120%
+}
+
+#controls {
+  margin-top: 40px;
+}
+
+#modeStats {
+  color: #4CAF50
+}
+
+#points,
+#finalPoints {
+  color: yellow
+}
+
+#highscore,
+#finalHighScore {
+  color: #f7ef8a
+}
+
+#time {
+  color: red
+}
+
+body {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+#gameOver,
+#startMenu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(30, 30, 30, 0.8);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+#startMenu label {
+  display: block;
+  margin: 10px 0;
+}
+
+#startMenu button,
+#gameOver button,
+#menuButton {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+#gameOver button {
+  margin-bottom: 10px
+}
+
+.title {
+  color: #4CAF50;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+#startMenu form {
+  margin-bottom: 20px;
+}
+
+#startMenu input[type="radio"] {
+  margin-right: 10px;
+}
+
+/* Custom styling for the mode selection form */
+#modeSelect {
+  margin-top: 20px;
+}
+
+#modeSelect label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #4CAF50;
+}
+
+#modeSelect input[type="radio"],
+#modeSelect input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.5);
+  /* Increase radio button size */
+}
+
+#modeSelect button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#modeSelect button[type="submit"]:hover {
+  background-color: #45a049;
+  /* Darker shade on hover */
+}
