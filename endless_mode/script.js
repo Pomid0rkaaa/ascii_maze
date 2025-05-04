@@ -175,6 +175,7 @@ function endGame() {
     getID('modeStats').textContent = 'Бесконечный';
     getID('maze').style.display = 'none';
     getID('stats').style.display = 'none';
+    getID('menuButton').style.display = 'none';
 }
 
 function restartGame() {
