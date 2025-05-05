@@ -19,11 +19,10 @@ const tiles = {
     trader: '🧙‍♂️',
     note: '📜',
     pit: '🕳',
+    flashlight: '🔦',
 }
 
-let itemTile = [tiles.sword, tiles.pickaxe, tiles.key]
-
-let fogState = false;
+let itemTile = [tiles.sword, tiles.pickaxe, tiles.key, tiles.flashlight];
 let maze = [];
 let playerPosition = { x: 1, y: 1 };
 let flagPosition = { x: 0, y: 0 };
@@ -35,6 +34,7 @@ let fullscreen = false;
 let inventory = [];
 let inventorySize = 5;
 let gameEnded = false;
+let explored = []
 
 const notesPool = [
     "Я думал, флаг рядом... Я ошибался.",
@@ -84,8 +84,6 @@ function updateInventoryDisplay() {
     getID('coins').textContent = coinCount;
 }
 
-
-
 function generateMaze() {
     for (let y = 0; y < mazeHeight; y++) {
         maze[y] = [];
@@ -104,6 +102,9 @@ function generateMaze() {
                 else maze[y][x] = tiles.zombie;
             }
         }
+        explored = Array(maze.length).fill(null).map(() =>
+            Array(maze[0].length).fill(false)
+        );
     }
 
     maybePlacePit();
@@ -111,11 +112,7 @@ function generateMaze() {
     generateFlag();
     maybePlaceItem();
     maybePlaceChest();
-    maybePlaceTrader();
-
-    if (Math.random() <= 0.1) {
-        fogState = true
-    }
+    maybePlaceTrader()
 }
 
 function generateFlag() {
@@ -130,7 +127,7 @@ function generateFlag() {
 }
 
 function maybePlaceItem() {
-    if (Math.random() < 0.30) {
+    if (Math.random() < 0.60) {
         let x, y;
         do {
             x = Math.floor(Math.random() * (mazeWidth - 2)) + 1;
@@ -140,6 +137,7 @@ function maybePlaceItem() {
         const items = [
             tiles.sword, tiles.sword, tiles.sword,
             tiles.pickaxe, tiles.pickaxe, tiles.pickaxe,
+            tiles.flashlight, tiles.flashlight,
             tiles.key, tiles.key,
             tiles.note
         ];
@@ -170,27 +168,44 @@ function maybePlaceTrader() {
     }
 }
 
-
 function drawMaze() {
-    let visibleMaze = maze.map((row, y) => row.map((tile, x) => {
-        const distX = x - playerPosition.x;
-        const distY = y - playerPosition.y;
-        const distance = distX * distX + distY * distY;;
-        if (fogState) {
-            if (distance <= visibilityRadius * visibilityRadius) {
-                return tile;
-            } else {
-                return tiles.fog;
+    visibilityRadius = inventory.indexOf(tiles.flashlight) !== -1 ? 6 : 3;
+
+    const flashlightPositions = [];
+
+    for (let y = 0; y < maze.length; y++) {
+        for (let x = 0; x < maze[y].length; x++) {
+            if (maze[y][x] === tiles.flashlight) {
+                flashlightPositions.push({ x, y });
             }
         }
-        if (maze[y][x] === tiles.pit) {
-            if (distance <= 4) {
-                return tiles.pit;
-            } else {
-                return tiles.floor;
+    }
+
+    const visibleMaze = maze.map((row, y) => row.map((tile, x) => {
+        const dx = x - playerPosition.x;
+        const dy = y - playerPosition.y;
+        const distSq = dx * dx + dy * dy;
+
+        let litByFlashlight = false;
+        for (const light of flashlightPositions) {
+            const lx = x - light.x;
+            const ly = y - light.y;
+            if (lx * lx + ly * ly <= 2) {
+                litByFlashlight = true;
+                break;
             }
         }
-        return tile;
+
+        const isVisibleNow = distSq <= visibilityRadius * visibilityRadius || litByFlashlight;
+
+        if (isVisibleNow) {
+            explored[y][x] = true;
+            return tile;
+        } else if (explored[y][x]) {
+            return tile;
+        } else {
+            return tiles.fog;
+        }
     }));
 
     return visibleMaze;
@@ -288,7 +303,10 @@ function movePlayer(dx, dy) {
     if (target === tiles.floor) {
         updatePlayerPos(newX, newY);
 
-    } else if (itemTile.includes(target)) {
+    } else if (
+        itemTile.includes(target) &&
+        !(target === tiles.flashlight && inventory.includes(tiles.flashlight))
+    ) {
         if (inventory.length < inventorySize) {
             inventory.push(target);
             updateInventoryDisplay();
@@ -318,11 +336,17 @@ function movePlayer(dx, dy) {
         getID('points').textContent = points;
         highscore_dungeon = Math.max(highscore_dungeon, points);
         getID('highscore').textContent = highscore_dungeon;
-        fogState = false
         if (points % 5 === 0) {
             coinCount++;
             updateInventoryDisplay()
         }
+
+        const flashlightIndex = inventory.indexOf(tiles.flashlight);
+        if (flashlightIndex !== -1 && Math.random() < 0.05) {
+            inventory.splice(flashlightIndex, 1);
+            updateInventoryDisplay()
+        }
+
         saveGameState();
         updatePlayerPos(newX, newY);
 
@@ -352,8 +376,6 @@ function movePlayer(dx, dy) {
         }
 
     } else if (target === tiles.trader) {
-        updatePlayerPos(newX, newY);
-
         if (coinCount === 0) {
             alert("У вас нет монет.");
             return;
@@ -362,7 +384,14 @@ function movePlayer(dx, dy) {
             return;
         }
 
-        let choice = prompt(`У торговца есть:\n1. ${tiles.sword} (3 монеты)\n2. ${tiles.pickaxe} (3 монеты)\n3. ${tiles.key} (5 монет)\n\nУ вас ${coinCount} монет. Введите номер покупки:`);
+        let choice = prompt(
+            `У торговца есть:
+1. ${tiles.sword} (3 монеты)
+2. ${tiles.pickaxe} (3 монеты)
+3. ${tiles.flashlight} (4 монеты)
+4. ${tiles.key} (5 монет)
+
+У вас ${coinCount} монет. Введите номер покупки:`);
 
         if (choice === '1' && coinCount >= 3) {
             inventory.push(tiles.sword);
@@ -371,6 +400,9 @@ function movePlayer(dx, dy) {
             inventory.push(tiles.pickaxe);
             coinCount -= 3;
         } else if (choice === '3' && coinCount >= 5) {
+            inventory.push(tiles.flashlight);
+            coinCount -= 4;
+        } else if (choice === '4' && coinCount >= 5) {
             inventory.push(tiles.key);
             coinCount -= 5;
         } else {
