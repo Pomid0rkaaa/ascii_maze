@@ -93,9 +93,14 @@ function generateMaze() {
             if (y === 0 || y === mazeHeight - 1 || x === 0 || x === mazeWidth - 1) {
                 maze[y][x] = tiles.wall;
             } else {
+                let baseWallChance = 0.05;
+                let sizeFactor = (mazeWidth * mazeHeight) / 400;
+                let wallChance = baseWallChance + sizeFactor * 0.10;
+                wallChance = Math.min(wallChance, 0.15);
+
                 let rand = Math.random();
-                if (rand < 0.85) maze[y][x] = tiles.floor;
-                else if (rand < 0.95) maze[y][x] = tiles.wall;
+                if (rand < 1 - wallChance - 0.05) maze[y][x] = tiles.floor;
+                else if (rand < 1 - 0.05) maze[y][x] = tiles.wall;
                 else maze[y][x] = tiles.zombie;
             }
         }
@@ -192,7 +197,7 @@ function drawMaze() {
 }
 
 function drawMazeCanvas() {
-    map = drawMaze();
+    let map = drawMaze();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     const totalWidth = mazeWidth * cellSize;
@@ -336,7 +341,7 @@ function movePlayer(dx, dy) {
                 inventory.push(tiles.pickaxe);
                 alert(`Вы нашли ${tiles.pickaxe} !`);
             } else {
-                const coinsFound = Math.floor(Math.random() * 3) + 1;
+                const coinsFound = Math.floor(Math.random() * 4) + 2;
                 coinCount += coinsFound;
                 alert(`Вы нашли ${coinsFound} монет!`);
             }
