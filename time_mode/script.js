@@ -6,7 +6,7 @@ let wallTile = '⛰️';
 let flagTile = '🚩';
 let specialflagTile = '🏁';
 let zombieTile = '🧟‍♂️';
-let player = '👻';
+let player = '🏃‍♂️';
 let swordTile = '🗡️';
 let pickaxeTile = '⛏️';
 
@@ -18,7 +18,6 @@ let timeLeft = 60;
 let timer;
 let highscore_infinite = 0;
 let highscore_time = 0;
-let fullscreen = false;
 let inventory = [];
 
 function vars_reload() {
@@ -201,8 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function saveGameState() {
     localStorage.setItem('gameState', JSON.stringify({
-        highscore_time: Math.max(highscore_time, points),
-        fullscreen
+        highscore_time: Math.max(highscore_time, points)
     }));
 }
 
@@ -211,7 +209,6 @@ function loadGameState() {
     if (saved) {
         const state = JSON.parse(saved);
         highscore_time = state.highscore_time || 0;
-        fullscreen = state.fullscreen;
 
         getID('highscore').textContent = highscore_time;
     }
@@ -226,27 +223,4 @@ function getID(id) {
 window.onload = function () {
     loadGameState()
     restartGame()
-    fullScreen(fullscreen)
 }
-
-function fullScreen(isEnable) {
-    if (!isEnable) return;
-    let element = document.documentElement;
-    if (element.requestFullscreen) element.requestFullscreen();
-    else if (element.webkitRequestFullscreen) element.webkitRequestFullscreen();
-    else if (element.mozRequestFullScreen) element.mozRequestFullScreen();
-    else if (element.msRequestFullscreen) element.msRequestFullscreen();
-}
-
-let inputDetected = false;
-function handleInput() {
-    if (!inputDetected) {
-        fullScreen(fullscreen);
-        inputDetected = true;
-    }
-}
-document.addEventListener('keydown', handleInput);
-document.addEventListener('click', handleInput);
-document.addEventListener('touchstart', handleInput);
-document.addEventListener('touchmove', handleInput);
-document.addEventListener('touchend', handleInput);

@@ -1,10 +1,51 @@
-pre {
+pre,
+canvas {
   font-family: monospace;
   white-space: pre-wrap;
   color: #bbbbbb;
   background-color: #222222;
   border: none;
   border-radius: 5px;
+  margin: 10px auto;
+}
+
+canvas {
+  display: block;
+  width: 85%;
+  max-width: 640px;
+  image-rendering: pixelated;
+  border: 2px solid #4CAF50;
+  box-shadow: 0 0 20px #4CAF50;
+  border-radius: 8px;
+}
+
+@media screen {}
+
+#inventoryBar {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 10px auto;
+  max-width: 300px;
+}
+
+.slot {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border: 2px solid #4CAF50;
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  color: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+.slot.used {
+  background-color: #333;
+  opacity: 0.4;
 }
 
 #maze {
@@ -20,7 +61,8 @@ pre {
 }
 
 #points,
-#finalPoints {
+#finalPoints,
+#coins {
   color: yellow
 }
 
