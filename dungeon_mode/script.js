@@ -394,7 +394,7 @@ function movePlayer(dx, dy) {
         } else if (choice === '2' && coinCount >= 3) {
             inventory.push(tiles.pickaxe);
             coinCount -= 3;
-        } else if (choice === '3' && coinCount >= 5) {
+        } else if (choice === '3' && coinCount >= 4) {
             inventory.push(tiles.flashlight);
             coinCount -= 4;
         } else if (choice === '4' && coinCount >= 5) {
