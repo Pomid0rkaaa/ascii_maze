@@ -93,14 +93,9 @@ function generateMaze() {
             if (y === 0 || y === mazeHeight - 1 || x === 0 || x === mazeWidth - 1) {
                 maze[y][x] = tiles.wall;
             } else {
-                let baseWallChance = 0.05;
-                let sizeFactor = (mazeWidth * mazeHeight) / 400;
-                let wallChance = baseWallChance + sizeFactor * 0.10;
-                wallChance = Math.min(wallChance, 0.15);
-
                 let rand = Math.random();
-                if (rand < 1 - wallChance - 0.05) maze[y][x] = tiles.floor;
-                else if (rand < 1 - 0.05) maze[y][x] = tiles.wall;
+                if (rand < 0.85) maze[y][x] = tiles.floor;
+                else if (rand < 0.95) maze[y][x] = tiles.wall;
                 else maze[y][x] = tiles.zombie;
             }
         }
