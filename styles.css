@@ -19,14 +19,13 @@ canvas {
   border-radius: 8px;
 }
 
-@media screen {}
-
 #inventoryBar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 6px;
   margin: 10px auto;
-  max-width: 300px;
+  max-width: 200px;
 }
 
 .slot {
@@ -34,18 +33,19 @@ canvas {
   height: 40px;
   font-size: 20px;
   border: 2px solid #4CAF50;
-  background-color: #111;
+  background-color: #333;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
   color: #ffffff;
   transition: background-color 0.2s ease;
+  opacity: 0.4;
 }
 
 .slot.used {
-  background-color: #333;
-  opacity: 0.4;
+  background-color: #111;
+  opacity: 1;
 }
 
 #maze {
@@ -147,6 +147,11 @@ body {
   /* Increase radio button size */
 }
 
+#modeSelect label:has(input[type="radio"]:checked) {
+  font-weight: bold;
+  color: #74c577;
+}
+
 #modeSelect button[type="submit"] {
   padding: 10px 20px;
   background-color: #4CAF50;
@@ -160,5 +165,5 @@ body {
 
 #modeSelect button[type="submit"]:hover {
   background-color: #45a049;
-  /* Darker shade on hover */
 }
+

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ASCII Maze | Dungeon</title>
   <link rel="stylesheet" href="../styles.css">
-  <script src="script.js" defer></script>
+  <script src="./main.js" type="module" defer></script>
 </head>
 <body>
   <button id="menuButton" onclick="location.href='../index.html'">Меню</button>
@@ -14,21 +14,15 @@
 
     <div id="stats">
       <p>Очки: <span id="points">0</span> | Монеты: <span id="coins">0</span></p>
+      <p>Биом: <span id="biomeName"></span></p>
       <p>Лучший результат: <span id="highscore">0</span></p>
       <p>Инвентарь:</p>
-      <div id="inventoryBar">
-        <div class="slot" id="slot0">__</div>
-        <div class="slot" id="slot1">__</div>
-        <div class="slot" id="slot2">__</div>
-        <div class="slot" id="slot3">__</div>
-        <div class="slot" id="slot4">__</div>
-      </div>    
+      <div id="inventoryBar"></div>    
     </div>
   </div>
 
   <div id="gameOver" style="display: none;">
     <h1>Игра Окончена</h1>
-    <p>Статистика:</p>
     <p>Режим: <span id="modeStats">Подземелье</span></p>
     <p>Лучший результат: <span id="finalHighScore">0</span></p>
     <p>Очки: <span id="finalPoints">0</span></p>
