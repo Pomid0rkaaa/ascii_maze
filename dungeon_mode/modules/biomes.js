@@ -89,8 +89,8 @@ export const biomes = [
 
 let currentBiomeIndex = 0;
 
-export function updateBiome(points) {
-    currentBiomeIndex = Math.floor(points / 25) % biomes.length;
+export function nextBiome() {
+    currentBiomeIndex++;
     const biome = biomes[currentBiomeIndex];
 
     for (const key in biome.tiles) {

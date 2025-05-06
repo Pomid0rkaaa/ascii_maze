@@ -2,7 +2,7 @@ import { Inventory } from './modules/inventory.js';
 import { tiles, itemTile, generationPool, tileChars } from './modules/tiles.js';
 import { notesPool } from './modules/notes.js';
 import { chooseRandomTile, extraGenerationTiles, getID, isInBounds, randomPos } from './modules/utils.js';
-import { getBiomeColor, updateBiome } from './modules/biomes.js';
+import { getBiomeColor, nextBiome } from './modules/biomes.js';
 
 export let maze = [];
 export const mazeWidth = Math.floor(Math.random() * 6) + 14;
@@ -18,6 +18,7 @@ let points = 0;
 let highscore_dungeon = 0;
 let visibilityRadius = 3;
 let flagPosition = { x: 0, y: 0 };
+let flagsCaptured = 0;
 
 let gameEnded = false;
 let explored = []
@@ -30,8 +31,6 @@ function movePlayerTo(x, y) {
 }
 
 function generateMaze() {
-    updateBiome(points);
-
     for (let y = 0; y < mazeHeight; y++) {
         maze[y] = [];
         for (let x = 0; x < mazeWidth; x++) {
@@ -54,7 +53,13 @@ function generateMaze() {
 
 function generateFlag() {
     const [x, y] = randomPos();
-    maze[y][x] = Math.random() < 0.8 ? tiles.flag : tiles.flagSpecial;
+    let tile;
+    if (flagsCaptured % 25 === 0 && flagsCaptured !== 0) {
+        tile = tiles.portal
+    } else {
+        tile = Math.random() < 0.8 ? tiles.flag : tiles.flagSpecial;
+    }
+    maze[y][x] = tile
     flagPosition = { x, y }
 }
 
@@ -232,7 +237,7 @@ function movePlayer(dx, dy) {
         handleZombie(newX, newY);
     } else if (target === tiles.wall) {
         handleWall(newX, newY);
-    } else if (target === tiles.flag || target === tiles.flagSpecial) {
+    } else if (target === tiles.flag || target === tiles.flagSpecial || target === tiles.portal) {
         handleFlag(newX, newY, target);
     } else if (target === tiles.chest) {
         handleChest(newX, newY);
@@ -240,8 +245,8 @@ function movePlayer(dx, dy) {
         handleTrader();
     } else if (target === tiles.note) {
         handleNote(newX, newY);
-    } else if (target === tiles.pit) {
-        handlePit(newX, newY);
+    } else if (target === tiles.portal) {
+        handlePortal(newX, newY);
     }
 
     inventory.updateDisplay();
@@ -282,6 +287,9 @@ function handleFlag(x, y, tile) {
     getID('highscore').textContent = highscore_dungeon;
 
     if (points % 5 === 0) inventory.addCoins(1);
+    if (tile === tiles.portal) {
+        nextBiome()
+    }
 
     if (inventory.has(tiles.flashlight) && Math.random() < 0.05) {
         inventory.remove(tiles.flashlight);
@@ -290,6 +298,7 @@ function handleFlag(x, y, tile) {
         inventory.remove(tiles.compass);
     }
 
+    flagsCaptured++
     saveGameState();
     movePlayerTo(x, y);
     generateMaze();
@@ -358,12 +367,6 @@ function handleNote(x, y) {
     const message = notesPool[Math.floor(Math.random() * notesPool.length)];
     alert(`${tileChars.note} Записка: ${message}`);
     movePlayerTo(x, y);
-}
-
-function handlePit(x, y) {
-    maze[y][x] = tiles.floor;
-    const [newX, newY] = randomPos();
-    movePlayerTo(newX, newY);
 }
 
 function endGame() {
@@ -435,7 +438,7 @@ window.onload = function () {
 }
 
 // --- CHEATS ---
-
+/*
 window.maze = maze
 window.inventory = inventory;
 window.tiles = tiles;
@@ -450,4 +453,7 @@ window.give = function (item) {
 window.points = function (n) {
     points = n
 }
-/**/
+window.flags = function (n) {
+    flagsCaptured = n
+}
+*/

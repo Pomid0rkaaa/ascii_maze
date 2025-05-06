@@ -49,7 +49,6 @@ export let generationPool = [
 ];
 
 export let extraGenerationPool = [
-    { tile: tiles.portal, chance: 0.06 },
     { tile: tiles.trader, chance: 0.09 },
     { tile: tiles.chest, chance: 0.12 },
 ]
