@@ -12,7 +12,7 @@ export const tiles = {
     chest: 'chest',
     trader: 'trader',
     note: 'note',
-    pit: 'pit',
+    portal: 'portal',
     flashlight: 'flashlight',
     bag: 'bag',
     compass: 'compass',
@@ -32,7 +32,7 @@ export let tileChars = {
     [tiles.chest]: '🧰',
     [tiles.trader]: '🧙‍♂️',
     [tiles.note]: '📜',
-    [tiles.pit]: '🕳️',
+    [tiles.portal]: '🌀',
     [tiles.flashlight]: '🔦',
     [tiles.bag]: '🎒',
     [tiles.compass]: '🧭',
@@ -49,7 +49,7 @@ export let generationPool = [
 ];
 
 export let extraGenerationPool = [
-    { tile: tiles.pit, chance: 0.06 },
+    { tile: tiles.portal, chance: 0.06 },
     { tile: tiles.trader, chance: 0.09 },
     { tile: tiles.chest, chance: 0.12 },
 ]

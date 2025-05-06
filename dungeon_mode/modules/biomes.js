@@ -19,7 +19,7 @@ export const biomes = [
             chest: '🧰',
             trader: '🧙‍♂️',
             note: '📜',
-            pit: '🕳️',
+            portal: '🌀',
             flashlight: '🔦',
             bag: '🎒',
         }
