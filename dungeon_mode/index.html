@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +8,18 @@
   <link rel="stylesheet" href="../styles.css">
   <script src="./main.js" type="module" defer></script>
 </head>
+
 <body>
   <button id="menuButton" onclick="location.href='../index.html'">Меню</button>
-  <div id="swipearea">
-    <canvas id="mazeCanvas" width="640" height="640"></canvas>
+  
+  <canvas id="mazeCanvas" width="640" height="640"></canvas>
 
-    <div id="stats">
-      <p>Очки: <span id="points">0</span> | Монеты: <span id="coins">0</span></p>
-      <p>Флажки: <span id="flags"></span> | Биом: <span id="biomeName"></span></p>
-      <p>Лучший результат: <span id="highscore">0</span></p>
-      <p>Инвентарь:</p>
-      <div id="inventoryBar"></div>    
-    </div>
+  <div id="stats">
+    <p>Очки: <span id="points">0</span> | Монеты: <span id="coins">0</span></p>
+    <p>Флажки: <span id="flags"></span> | Биом: <span id="biomeName"></span></p>
+    <p>Лучший результат: <span id="highscore">0</span></p>
+    <p>Инвентарь:</p>
+    <div id="inventoryBar"></div>
   </div>
 
   <div id="gameOver" style="display: none;">
@@ -31,4 +32,5 @@
   </div>
 
 </body>
+
 </html>

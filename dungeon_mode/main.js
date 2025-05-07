@@ -398,7 +398,7 @@ document.addEventListener('keydown', (event) => {
 
 document.addEventListener('DOMContentLoaded', function () {
     if (!gameEnded) {
-        const swipeArea = document.querySelector('#swipearea');
+        const swipeArea = document.querySelector('html');
         let touchStartX, touchStartY;
         swipeArea.addEventListener('touchstart', e => {
             touchStartX = e.touches[0].clientX;
