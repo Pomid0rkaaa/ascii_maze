@@ -1,3 +1,5 @@
+import { flagsCaptured } from "../main.js";
+import { getBiomeName } from "./biomes.js";
 import { tileChars } from "./tiles.js";
 import { getID } from "./utils.js";
 
@@ -68,6 +70,8 @@ export class Inventory {
             bar.appendChild(slot);
         }
         getID('coins').textContent = this.coins;
+        getID('biomeName').textContent = getBiomeName();
+        getID('flags').textContent = flagsCaptured;
     }
 
     expand(n = 0) {

@@ -2,11 +2,12 @@ import { Inventory } from './modules/inventory.js';
 import { tiles, itemTile, generationPool, tileChars } from './modules/tiles.js';
 import { notesPool } from './modules/notes.js';
 import { chooseRandomTile, extraGenerationTiles, getID, isInBounds, randomPos } from './modules/utils.js';
-import { getBiomeColor, nextBiome } from './modules/biomes.js';
+import { getBiomeColor, nextBiome, changeBiome } from './modules/biomes.js';
 
 export let maze = [];
 export const mazeWidth = Math.floor(Math.random() * 6) + 14;
 export const mazeHeight = Math.floor(Math.random() * 6) + 14;
+export let flagsCaptured = 0;
 
 const canvas = document.getElementById('mazeCanvas');
 const ctx = canvas.getContext('2d');
@@ -18,7 +19,6 @@ let points = 0;
 let highscore_dungeon = 0;
 let visibilityRadius = 3;
 let flagPosition = { x: 0, y: 0 };
-let flagsCaptured = 0;
 
 let gameEnded = false;
 let explored = []
@@ -456,4 +456,6 @@ window.points = function (n) {
 window.flags = function (n) {
     flagsCaptured = n
 }
+window.nextBiome = nextBiome
+window.drawMaze = drawMazeCanvas
 */

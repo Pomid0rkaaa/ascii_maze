@@ -90,17 +90,25 @@ export const biomes = [
 let currentBiomeIndex = 0;
 
 export function nextBiome() {
-    currentBiomeIndex++;
-    const biome = biomes[currentBiomeIndex];
+    currentBiomeIndex = (currentBiomeIndex + 1) % biomes.length;
+    changeBiome(currentBiomeIndex)
+}
 
+export function changeBiome(n) {
+    const index = n % biomes.length;
+    const biome = biomes[index];
+    currentBiomeIndex = index;
     for (const key in biome.tiles) {
         if (tileChars[key] !== undefined) {
             tileChars[key] = biome.tiles[key];
         }
     }
-    getID('biomeName').textContent = biomes[currentBiomeIndex].name;
+    getID('biomeName').textContent = biome.name;
 }
 
 export function getBiomeColor() {
     return biomes[currentBiomeIndex].bgColor
+}
+export function getBiomeName() {
+    return biomes[currentBiomeIndex].name
 }
