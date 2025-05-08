@@ -54,7 +54,7 @@ function generateMaze() {
 function generateFlag() {
     const [x, y] = randomPos();
     let tile;
-    if (flagsCaptured % 25 === 0 && flagsCaptured !== 0) {
+    if (flagsCaptured % 20 === 0 && flagsCaptured !== 0) {
         tile = tiles.portal
     } else {
         tile = Math.random() < 0.8 ? tiles.flag : tiles.flagSpecial;
