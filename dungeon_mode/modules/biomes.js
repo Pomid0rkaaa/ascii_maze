@@ -58,7 +58,7 @@ export const biomes = [
         bgColor: "#b8e0ff",
         tiles: {
             wall: "🧊",
-            zombie: "☃️",
+            zombie: "⛄️",
             chest: '🎁',
         }
     },
