@@ -5,7 +5,6 @@ const traderItems = [
     { tile: tiles.pickaxe, char: tileChars.pickaxe, price: 3 },
     { tile: tiles.flashlight, char: tileChars.flashlight, price: 4 },
     { tile: tiles.key, char: tileChars.key, price: 5 },
-    { tile: tiles.bag, char: tileChars.bag, price: 10 },
 ];
 
 export function handleTrader(inventory) {
