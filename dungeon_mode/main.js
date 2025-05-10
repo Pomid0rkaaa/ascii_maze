@@ -3,6 +3,7 @@ import { tiles, itemTile, generationPool, tileChars } from './modules/tiles.js';
 import { notesPool } from './modules/notes.js';
 import { chooseRandomTile, extraGenerationTiles, getID, isInBounds, randomPos } from './modules/utils.js';
 import { getBiomeColor, nextBiome, changeBiome } from './modules/biomes.js';
+import { handleTrader } from './modules/trader.js';
 
 export let maze = [];
 export const mazeWidth = Math.floor(Math.random() * 6) + 14;
@@ -15,7 +16,6 @@ const cellSize = Math.floor(Math.min(canvas.width / mazeWidth, canvas.height / m
 
 const inventory = new Inventory(4);
 let playerPosition = { x: 1, y: 1 };
-let points = 0;
 let highscore_dungeon = 0;
 let visibilityRadius = 3;
 let flagPosition = { x: 0, y: 0 };
@@ -242,7 +242,7 @@ function movePlayer(dx, dy) {
     } else if (target === tiles.chest) {
         handleChest(newX, newY);
     } else if (target === tiles.trader) {
-        handleTrader();
+        handleTrader(inventory);
     } else if (target === tiles.note) {
         handleNote(newX, newY);
     } else if (target === tiles.portal) {
@@ -281,12 +281,10 @@ function handleWall(x, y) {
 }
 
 function handleFlag(x, y, tile) {
-    points += tile === tiles.flagSpecial ? 2 : 1;
-    getID('points').textContent = points;
-    highscore_dungeon = Math.max(highscore_dungeon, points);
+    highscore_dungeon = Math.max(highscore_dungeon, flagsCaptured);
     getID('highscore').textContent = highscore_dungeon;
 
-    if (points % 5 === 0) inventory.addCoins(1);
+    if (flagsCaptured % 5 === 0 || tile === tiles.flagSpecial) inventory.addCoins(1);
     if (tile === tiles.portal) {
         nextBiome()
     }
@@ -343,26 +341,6 @@ function handleChest(x, y) {
     movePlayerTo(x, y);
 }
 
-function handleTrader() {
-    const choice = prompt(
-        `У торговца есть:
-1. ${tileChars.sword} (3 монеты)
-2. ${tileChars.pickaxe} (3 монеты)
-3. ${tileChars.flashlight} (4 монеты)
-4. ${tileChars.key} (5 монет)
-
-У вас ${inventory.getCoins()} монет. Введите номер покупки:`
-    );
-
-    switch (choice) {
-        case '1': inventory.buy(tiles.sword, 3); break;
-        case '2': inventory.buy(tiles.pickaxe, 3); break;
-        case '3': inventory.buy(tiles.flashlight, 4); break;
-        case '4': inventory.buy(tiles.key, 5); break;
-        default: break;
-    }
-}
-
 function handleNote(x, y) {
     const message = notesPool[Math.floor(Math.random() * notesPool.length)];
     alert(`${tileChars.note} Записка: ${message}`);
@@ -372,7 +350,7 @@ function handleNote(x, y) {
 function endGame() {
     gameEnded = true
     getID('gameOver').style.display = 'block';
-    getID('finalPoints').textContent = points;
+    getID('finalFlags').textContent = flagsCaptured;
     getID('finalHighScore').textContent = highscore_dungeon;
     getID('mazeCanvas').style.display = 'none';
     getID('stats').style.display = 'none';
@@ -416,7 +394,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function saveGameState() {
     localStorage.setItem('gameState', JSON.stringify({
-        highscore_dungeon: Math.max(highscore_dungeon, points)
+        highscore_dungeon: Math.max(highscore_dungeon, flagsCaptured)
     }));
 }
 
@@ -438,7 +416,7 @@ window.onload = function () {
 }
 
 // --- CHEATS ---
-/*
+
 window.maze = maze
 window.inventory = inventory;
 window.tiles = tiles;
@@ -450,12 +428,9 @@ window.give = function (item) {
     inventory.add(item);
     inventory.updateDisplay();
 }
-window.points = function (n) {
-    points = n
-}
 window.flags = function (n) {
     flagsCaptured = n
 }
 window.nextBiome = nextBiome
-window.drawMaze = drawMazeCanvas
+window.drawMaze = drawMazeCanvas/*
 */
