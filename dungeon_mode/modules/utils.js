@@ -1,5 +1,7 @@
-import { mazeHeight, mazeWidth, maze } from "../main.js";
+import { inventory } from "../main.js";
+import { getBiomeName } from "./biomes.js";
 import { extraGenerationPool, tiles } from "./tiles.js";
+import { mazeHeight, mazeWidth, maze } from './generation.js';
 
 export function getID(id) {
     return document.getElementById(id);
@@ -33,22 +35,6 @@ export function chooseRandomTile(tileChances) {
     return tileChances[tileChances.length - 1].tile;
 }
 
-export function maybePlaceItem() {
-    if (Math.random() < 0.60) {
-        const [x, y] = randomPos();
-
-        const items = [
-            tiles.sword, tiles.sword, tiles.sword,
-            tiles.pickaxe, tiles.pickaxe, tiles.pickaxe,
-            tiles.flashlight, tiles.flashlight,
-            tiles.key, tiles.key,
-            tiles.note
-        ];
-
-        maze[y][x] = items[Math.floor(Math.random() * items.length)];
-    }
-}
-
 export function extraGenerationTiles() {
     for (const { tile, chance } of extraGenerationPool) {
         if (Math.random() < chance) {
@@ -58,4 +44,12 @@ export function extraGenerationTiles() {
             }
         }
     }
+}
+
+export function updateUIDisplay() {
+    getID('highscore').textContent = Math.max(inventory.highscore, inventory.flagsCaptured);
+    getID('coins').textContent = inventory.getCoins();
+    getID('biomeName').textContent = getBiomeName();
+    getID('flags').textContent = inventory.flagsCaptured;
+    inventory.updateDisplay();
 }

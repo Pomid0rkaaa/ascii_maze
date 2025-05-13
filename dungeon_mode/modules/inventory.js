@@ -1,5 +1,3 @@
-import { flagsCaptured } from "../main.js";
-import { getBiomeName } from "./biomes.js";
 import { tileChars } from "./tiles.js";
 import { getID } from "./utils.js";
 
@@ -8,6 +6,8 @@ export class Inventory {
         this.items = [];
         this.size = size;
         this.coins = 0;
+        this.flagsCaptured = 0;
+        this.highscore = 0;
     }
 
     has(item) {
@@ -69,13 +69,22 @@ export class Inventory {
             }
             bar.appendChild(slot);
         }
-        getID('coins').textContent = this.coins;
-        getID('biomeName').textContent = getBiomeName();
-        getID('flags').textContent = flagsCaptured;
     }
 
     expand(n = 0) {
         this.size += n;
         this.updateDisplay();
+    }
+
+    captureFlag() {
+        this.flagsCaptured++;
+    }
+
+    setFlags(n) {
+        this.flagsCaptured = n;
+    }
+
+    setHighscore(n) {
+        this.highscore = n;
     }
 }

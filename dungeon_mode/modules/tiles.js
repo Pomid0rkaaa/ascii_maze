@@ -18,25 +18,30 @@ export const tiles = {
     compass: 'compass',
 };
 
-export let tileChars = {
-    [tiles.floor]: ' ',
-    [tiles.wall]: '⛰️',
-    [tiles.flag]: '🚩',
-    [tiles.flagSpecial]: '🏁',
-    [tiles.zombie]: '🧟‍♂️',
-    [tiles.player]: '🚶',
-    [tiles.sword]: '🗡️',
-    [tiles.pickaxe]: '⛏️',
-    [tiles.fog]: '.',
-    [tiles.key]: '🔑',
-    [tiles.chest]: '🧰',
-    [tiles.trader]: '🧙‍♂️',
-    [tiles.note]: '📜',
-    [tiles.portal]: '🌀',
-    [tiles.flashlight]: '🔦',
-    [tiles.bag]: '🎒',
-    [tiles.compass]: '🧭',
-};
+export let tileChars = {};
+tileCharsReset()
+
+export function tileCharsReset() {
+    tileChars = {
+        [tiles.floor]: ' ',
+        [tiles.wall]: '⛰️',
+        [tiles.flag]: '🚩',
+        [tiles.flagSpecial]: '🏁',
+        [tiles.zombie]: '🧟‍♂️',
+        [tiles.player]: '🚶',
+        [tiles.sword]: '🗡️',
+        [tiles.pickaxe]: '⛏️',
+        [tiles.fog]: '.',
+        [tiles.key]: '🔑',
+        [tiles.chest]: '🧰',
+        [tiles.trader]: '🧙‍♂️',
+        [tiles.note]: '📜',
+        [tiles.portal]: '🌀',
+        [tiles.flashlight]: '🔦',
+        [tiles.bag]: '🎒',
+        [tiles.compass]: '🧭',
+    }
+}
 
 export let itemTile = [
     tiles.sword, tiles.pickaxe, tiles.key, tiles.flashlight

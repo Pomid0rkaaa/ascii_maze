@@ -1,88 +1,82 @@
-import { tileChars } from "./tiles.js";
+import { tileChars, tileCharsReset } from "./tiles.js";
 import { getID } from "./utils.js";
 
 export const biomes = [
     {
         name: "Пещера",
         bgColor: "#222",
-        tiles: {
-            floor: ' ',
-            wall: '⛰️',
-            flag: '🚩',
-            flagSpecial: '🏁',
-            zombie: '🧟‍♂️',
-            player: '🚶',
-            sword: '🗡️',
-            pickaxe: '⛏️',
-            fog: '.',
-            key: '🔑',
-            chest: '🧰',
-            trader: '🧙‍♂️',
-            note: '📜',
-            portal: '🌀',
-            flashlight: '🔦',
-            bag: '🎒',
-        }
+        tiles: {}
     },
     {
         name: "Зелёный лес",
         bgColor: "#1a2e1a",
         tiles: {
+            chest: "🧰",
+            pickaxe: "🪓",
+            sword: "🗡️",
+            trader: "🧙‍♂️",
             wall: "🌲",
             zombie: "🐺",
-            pickaxe: "🪓",
-            chest: "📦",
         }
     },
     {
         name: "Пустыня",
         bgColor: "#a36c1f",
         tiles: {
+            chest: "🧰",
+            pickaxe: "🪓",
+            sword: "🗡️",
+            trader: "👳‍♂️",
             wall: "🌵",
             zombie: "🦂",
-            trader: "👳‍♂️",
         }
     },
     {
         name: "Склеп",
         bgColor: "#222222",
         tiles: {
+            chest: "🧰",
+            pickaxe: "⛏️",
+            sword: "🗡️",
+            trader: "🧙‍♂️",
             wall: "🧱",
             zombie: "💀",
-            trader: '🧙‍♂️',
-            pickaxe: "⛏️",
         }
     },
     {
         name: "Ледяная пещера",
         bgColor: "#b8e0ff",
         tiles: {
+            chest: "🎁",
+            pickaxe: "⛏️",
+            sword: "🗡️",
+            trader: "🧙‍♂️",
             wall: "🧊",
             zombie: "⛄️",
-            chest: '🎁',
         }
     },
     {
         name: "Вулкан",
         bgColor: "#f55d42",
         tiles: {
-            wall: "🌋",
-            zombie: "🔥",
+            chest: "🧰",
+            pickaxe: "⛏️",
             sword: "💧",
             trader: "👨‍🚒",
-            chest: '🛢️',
+            wall: "🌋",
+            zombie: "🔥",
         }
     },
     {
         name: "Кладбище",
         bgColor: "#3d291a",
         tiles: {
+            chest: "🧰",
+            pickaxe: "🪓",
+            sword: "🔫",
+            trader: "🧙‍♂️",
             wall: "⚰️",
             zombie: "👻",
-            trader: '🧙‍♂️',
-            sword: "🔫",
-            pickaxe: "🪓",
-            chest: "📦",
         }
     }
 ];
@@ -98,12 +92,13 @@ export function changeBiome(n) {
     const index = n % biomes.length;
     const biome = biomes[index];
     currentBiomeIndex = index;
+    if (currentBiomeIndex === 0) tileCharsReset();
     for (const key in biome.tiles) {
         if (tileChars[key] !== undefined) {
             tileChars[key] = biome.tiles[key];
         }
     }
-    getID('biomeName').textContent = biome.name;
+    getID("biomeName").textContent = biome.name;
 }
 
 export function getBiomeColor() {
