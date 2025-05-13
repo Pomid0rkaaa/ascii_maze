@@ -2,6 +2,7 @@ import { Inventory } from './modules/inventory.js';
 import { getID, updateUIDisplay } from './modules/utils.js';
 import { drawMazeCanvas } from './modules/draw.js';
 import { movePlayer } from './modules/move.js';
+import { generateMaze } from './modules/generation.js';
 
 export const inventory = new Inventory(4);
 let gameEnded = false;
