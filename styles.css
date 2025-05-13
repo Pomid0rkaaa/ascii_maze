@@ -73,6 +73,7 @@ canvas {
 }
 
 #flags,
+#finalFlags,
 #time {
   color: red
 }
