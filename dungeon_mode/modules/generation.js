@@ -1,4 +1,3 @@
-
 import { tiles, generationPool } from './tiles.js';
 import { chooseRandomTile, extraGenerationTiles, randomPos } from './utils.js';
 import { inventory } from "../main.js";

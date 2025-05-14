@@ -8,14 +8,12 @@ import { isInBounds, updateUIDisplay } from './utils.js';
 import { mazeHeight, mazeWidth, maze, generateMaze } from './generation.js';
 import { nextBiome } from "./biomes.js"
 
-
 export let playerPosition = { x: 1, y: 1 };
 
 export function movePlayerTo(x, y) {
     maze[playerPosition.y][playerPosition.x] = tiles.floor;
     playerPosition = { x, y };
     maze[y][x] = tiles.player;
-    drawMazeCanvas();
 }
 
 export function movePlayer(dx, dy) {
@@ -45,7 +43,8 @@ export function movePlayer(dx, dy) {
         handlePortal(newX, newY);
     }
 
-    updateUIDisplay()
+    updateUIDisplay();
+    drawMazeCanvas();
 }
 
 function handleFloor(x, y) {
@@ -85,6 +84,7 @@ function handleFlag(x, y, tile) {
     saveGameState();
     movePlayerTo(x, y);
     generateMaze();
+    drawMazeCanvas()
 }
 
 function handleNote(x, y) {

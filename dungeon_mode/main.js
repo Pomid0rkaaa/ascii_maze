@@ -78,7 +78,7 @@ window.onload = function () {
 // --- CHEATS ---
 /*
 import { tiles } from './modules/tiles.js';
-import { generateMaze, maze } from './modules/generation.js';
+import { maze } from './modules/generation.js';
 import { nextBiome } from './modules/biomes.js';
 import { playerPosition } from './modules/move.js';
 

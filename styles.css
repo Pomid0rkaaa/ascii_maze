@@ -131,7 +131,6 @@ body {
   margin-right: 10px;
 }
 
-/* Custom styling for the mode selection form */
 #modeSelect {
   margin-top: 20px;
 }
@@ -147,7 +146,6 @@ body {
 #modeSelect input[type="checkbox"] {
   margin-right: 10px;
   transform: scale(1.5);
-  /* Increase radio button size */
 }
 
 #modeSelect label:has(input[type="radio"]:checked) {
