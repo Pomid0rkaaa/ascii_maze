@@ -6,6 +6,7 @@ import { notesPool } from "./notes.js"
 import { tiles, itemTile, tileChars } from './tiles.js';
 import { isInBounds, updateUIDisplay } from './utils.js';
 import { mazeHeight, mazeWidth, maze, generateMaze } from './generation.js';
+import { nextBiome } from "./biomes.js"
 
 
 export let playerPosition = { x: 1, y: 1 };
