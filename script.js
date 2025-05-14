@@ -5,13 +5,13 @@ getID('modeSelect').addEventListener('submit', function (event) {
     mode = document.querySelector('input[name="mode"]:checked').value;
     switch (mode) {
         case "dungeon":
-            location.href = "./dungeon_mode/index.html"
+            location.href = "./modes/dungeon/"
             break;
         case "flags":
-            location.href = "./flags_mode/index.html"
+            location.href = "./modes/flags/"
             break;
         case "time":
-            location.href = "./time_mode/index.html"
+            location.href = "./modes/time/"
             break;
     }
 });

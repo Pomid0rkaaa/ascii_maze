@@ -1,5 +1,15 @@
-pre,
-canvas {
+body {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+#controls {
+  margin-top: 40px;
+}
+
+#controls pre {
+  font-size: 120%;
   font-family: monospace;
   white-space: pre-wrap;
   color: #bbbbbb;
@@ -9,82 +19,6 @@ canvas {
   margin: 10px auto;
 }
 
-canvas {
-  display: block;
-  width: 85%;
-  max-width: 640px;
-  image-rendering: pixelated;
-  border: 2px solid #4CAF50;
-  box-shadow: 0 0 20px #4CAF50;
-  border-radius: 8px;
-}
-
-#inventoryBar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
-  margin: 10px auto;
-  max-width: 200px;
-}
-
-.slot {
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
-  border: 2px solid #4CAF50;
-  background-color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  color: #ffffff;
-  transition: background-color 0.2s ease;
-  opacity: 0.4;
-}
-
-.slot.used {
-  background-color: #111;
-  opacity: 1;
-}
-
-#maze {
-  font-size: 120%
-}
-
-#controls {
-  margin-top: 40px;
-}
-
-#biomeName,
-#modeStats {
-  color: #4CAF50
-}
-
-#points,
-#finalPoints,
-#coins {
-  color: yellow
-}
-
-#highscore,
-#finalHighScore {
-  color: #f7ef8a
-}
-
-#flags,
-#finalFlags,
-#time {
-  color: red
-}
-
-body {
-  background-color: black;
-  color: white;
-  text-align: center;
-}
-
-#gameOver,
 #startMenu {
   position: absolute;
   top: 50%;
@@ -100,9 +34,7 @@ body {
   margin: 10px 0;
 }
 
-#startMenu button,
-#gameOver button,
-#menuButton {
+#startMenu button {
   padding: 10px 20px;
   background-color: #4CAF50;
   border: none;
@@ -111,10 +43,6 @@ body {
   color: white;
   font-size: 16px;
   margin-right: 10px;
-}
-
-#gameOver button {
-  margin-bottom: 10px
 }
 
 .title {

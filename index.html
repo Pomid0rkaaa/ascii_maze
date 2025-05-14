@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,23 +9,25 @@
   <script src="script.js" defer></script>
   <script src="https://kit.fontawesome.com/2a9d725a1e.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
 
-<div id="startMenu">
-  <h1 class="title">ASCII Maze</h1>
-  <form id="modeSelect">
-    <label><input type="radio" name="mode" value="dungeon" checked> Подземелье <i class="fa-solid fa-skull"></i></label>
-    <label><input type="radio" name="mode" value="time"> На время <i class="fa-solid fa-clock"></i></label>
-    <label><input type="radio" name="mode" value="flags"> Флажки <i class="fa-solid fa-flag"></i></label>
-    <button type="submit"><i class="fa-solid fa-play"></i> Начать</button>
-  </form>
+  <div id="startMenu">
+    <h1 class="title">ASCII Maze</h1>
+    <form id="modeSelect">
+      <label><input type="radio" name="mode" value="dungeon" checked> Dungeon <i class="fa-solid fa-skull"></i></label>
+      <label><input type="radio" name="mode" value="time"> Time <i class="fa-solid fa-clock"></i></label>
+      <label><input type="radio" name="mode" value="flags"> Flags <i class="fa-solid fa-flag"></i></label>
+      <button type="submit"><i class="fa-solid fa-play"></i> Play</button>
+    </form>
 
-  <div id="controls">
-    <h1 class="title">Управление</h1>
-    <pre id="controls_showcase">   W   
+    <div id="controls">
+      <h1 class="title">Controls</h1>
+      <pre id="controls_showcase">   W   
 A S D</pre>
+    </div>
   </div>
-</div>
 
 </body>
+
 </html>

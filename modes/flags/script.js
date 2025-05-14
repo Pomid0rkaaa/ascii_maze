@@ -93,11 +93,11 @@ function move(dx, dy) {
 }
 
 document.addEventListener('keydown', (event) => {
-    const key = event.key.toLowerCase();
-    if (['w', 'arrowup', 'ц'].includes(key)) move(0, -1);
-    else if (['a', 'arrowleft', 'ф'].includes(key)) move(-1, 0);
-    else if (['s', 'arrowdown', 'ы', 'і'].includes(key)) move(0, 1);
-    else if (['d', 'arrowright', 'в'].includes(key)) move(1, 0);
+    const key = event.code.toLowerCase();
+    if (['keyw', 'arrowup'].includes(key)) move(0, -1);
+    else if (['keya', 'arrowleft'].includes(key)) move(-1, 0);
+    else if (['keys', 'arrowdown'].includes(key)) move(0, 1);
+    else if (['keyd', 'arrowright'].includes(key)) move(1, 0);
 });
 
 document.addEventListener('DOMContentLoaded', function () {

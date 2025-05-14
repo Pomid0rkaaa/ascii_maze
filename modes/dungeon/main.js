@@ -25,13 +25,29 @@ export function endGame() {
     getID('reloadButton').focus()
 }
 
+function dropItem() {
+    const item = inventory.items[inventory.selectedItem];
+    inventory.drop(item);
+    inventory.updateDisplay();
+}
+
+getID('dropButton').addEventListener('click', dropItem);
+
 document.addEventListener('keydown', (event) => {
     if (!gameEnded) {
-        const key = event.key.toLowerCase();
-        if (['w', 'arrowup', 'ц'].includes(key)) movePlayer(0, -1);
-        else if (['a', 'arrowleft', 'ф'].includes(key)) movePlayer(-1, 0);
-        else if (['s', 'arrowdown', 'ы', 'і'].includes(key)) movePlayer(0, 1);
-        else if (['d', 'arrowright', 'в'].includes(key)) movePlayer(1, 0);
+        const key = event.code.toLowerCase();
+        if (['keyw', 'arrowup'].includes(key)) movePlayer(0, -1);
+        else if (['keya', 'arrowleft'].includes(key)) movePlayer(-1, 0);
+        else if (['keys', 'arrowdown'].includes(key)) movePlayer(0, 1);
+        else if (['keyd', 'arrowright'].includes(key)) movePlayer(1, 0);
+        else if (['keyq', 'delete'].includes(key)) dropItem();
+        else if (key.startsWith('digit')) {
+            const index = parseInt(key.replace('Digit', ''), 10) - 1;
+            if (index >= 0 && index < inventory.size) {
+                inventory.selectedItem = index;
+                updateUIDisplay()
+            }
+        }
     }
 });
 
@@ -76,7 +92,7 @@ window.onload = function () {
 }
 
 // --- CHEATS ---
-/*
+
 import { tiles } from './modules/tiles.js';
 import { maze } from './modules/generation.js';
 import { nextBiome } from './modules/biomes.js';
@@ -95,5 +111,5 @@ window.give = function (item) {
 }
 window.flags = inventory.setFlags
 window.nextBiome = nextBiome
-window.drawMaze = drawMazeCanvas
+window.drawMaze = drawMazeCanvas/*
 */

@@ -8,11 +8,11 @@ const traderItems = [
 ];
 
 export function handleTrader(inventory) {
-    let message = 'У торговца есть:\n';
+    let message = 'The merchant has:\n';
     traderItems.forEach((item, index) => {
-        message += `${index + 1}. ${item.char} (${item.price} мон${item.price === 1 ? 'ета' : item.price < 5 ? 'еты' : 'ет'})\n`;
+        message += `${index + 1}. ${item.char}: ${item.price} coins\n`;
     });
-    message += `\nУ вас ${inventory.getCoins()} монет. Введите номер покупки:`;
+    message += `\nYou have ${inventory.getCoins()} coins. Enter your purchase number:`;
 
     const choice = prompt(message);
     const index = parseInt(choice, 10) - 1;

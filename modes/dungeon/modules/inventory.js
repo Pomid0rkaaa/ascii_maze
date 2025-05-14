@@ -1,5 +1,8 @@
-import { tileChars } from "./tiles.js";
-import { getID } from "./utils.js";
+import { drawMazeCanvas } from "./draw.js";
+import { maze } from "./generation.js";
+import { playerPosition } from "./move.js";
+import { tileChars, tiles } from "./tiles.js";
+import { getID, updateUIDisplay } from "./utils.js";
 
 export class Inventory {
     constructor(size) {
@@ -8,6 +11,7 @@ export class Inventory {
         this.coins = 0;
         this.flagsCaptured = 0;
         this.highscore = 0;
+        this.selectedSlot = 0;
     }
 
     has(item) {
@@ -16,7 +20,7 @@ export class Inventory {
 
     add(item) {
         if (this.items.length >= this.size) {
-            alert("Инвентарь полон.");
+            alert("The inventory is full.");
             return false;
         }
         this.items.push(item);
@@ -32,9 +36,22 @@ export class Inventory {
         return false;
     }
 
+    drop(item) {
+        const index = this.items.indexOf(item);
+        if (index === -1) return false;
+
+        const dropPosition = maze[playerPosition.y + 1][playerPosition.x];
+        if (dropPosition !== tiles.floor) return false;
+
+        this.items.splice(index, 1);
+        maze[playerPosition.y + 1][playerPosition.x] = item;
+        drawMazeCanvas();
+        return true;
+    }
+
     buy(item, price) {
         if (this.coins < price) {
-            alert("Недостаточно монет.");
+            alert("Not enough coins.");
             return false;
         }
         if (!this.add(item)) {
@@ -61,6 +78,12 @@ export class Inventory {
             slot.className = 'slot';
             slot.id = `slot${i}`;
 
+            if (this.selectedSlot === i) slot.classList.add('selected');
+            slot.addEventListener('click', () => {
+                this.selectedSlot = i;
+                this.updateDisplay()
+            })
+
             if (this.items[i]) {
                 slot.textContent = tileChars[this.items[i]];
                 slot.classList.add('used');
@@ -68,6 +91,13 @@ export class Inventory {
                 slot.textContent = '__';
             }
             bar.appendChild(slot);
+        }
+
+        const dropButton = getID('dropButton');
+        if (document.querySelector(`#slot${this.selectedSlot}.used`)) {
+            dropButton.removeAttribute("disabled");
+        } else {
+            dropButton.setAttribute("disabled", "");
         }
     }
 

@@ -1,0 +1,60 @@
+#maze {
+  font-size: 120%;
+  font-family: monospace;
+  white-space: pre-wrap;
+  color: #bbbbbb;
+  background-color: #222222;
+  border: none;
+  border-radius: 5px;
+  margin: 10px auto;
+}
+
+#modeStats {
+  color: #4CAF50
+}
+
+#points,
+#finalPoints {
+  color: yellow
+}
+
+#highscore,
+#finalHighScore {
+  color: #f7ef8a
+}
+
+#time {
+  color: red
+}
+
+body {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+#gameOver {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(30, 30, 30, 0.8);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+#gameOver button,
+#menuButton {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+#gameOver button {
+  margin-top: 10px
+}

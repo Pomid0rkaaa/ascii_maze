@@ -3,12 +3,12 @@ import { getID } from "./utils.js";
 
 export const biomes = [
     {
-        name: "Пещера",
+        name: "Cave",
         bgColor: "#222",
         tiles: {}
     },
     {
-        name: "Зелёный лес",
+        name: "Forest",
         bgColor: "#1a2e1a",
         tiles: {
             chest: "🧰",
@@ -20,7 +20,7 @@ export const biomes = [
         }
     },
     {
-        name: "Пустыня",
+        name: "Desert",
         bgColor: "#a36c1f",
         tiles: {
             chest: "🧰",
@@ -32,7 +32,7 @@ export const biomes = [
         }
     },
     {
-        name: "Склеп",
+        name: "Tomb",
         bgColor: "#222222",
         tiles: {
             chest: "🧰",
@@ -44,7 +44,7 @@ export const biomes = [
         }
     },
     {
-        name: "Ледяная пещера",
+        name: "Ice cave",
         bgColor: "#b8e0ff",
         tiles: {
             chest: "🎁",
@@ -56,7 +56,7 @@ export const biomes = [
         }
     },
     {
-        name: "Вулкан",
+        name: "Volcano",
         bgColor: "#f55d42",
         tiles: {
             chest: "🧰",
@@ -68,7 +68,7 @@ export const biomes = [
         }
     },
     {
-        name: "Кладбище",
+        name: "Graveyard",
         bgColor: "#3d291a",
         tiles: {
             chest: "🧰",

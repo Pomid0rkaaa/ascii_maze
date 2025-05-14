@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASCII Maze | Dungeon</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./main.js" type="module" defer></script>
+</head>
+
+<body>
+  <button id="menuButton" onclick="location.href='/'">Menu</button>
+
+  <canvas id="mazeCanvas" width="640" height="480"></canvas>
+
+  <div id="stats">
+    <p>Flags: <span id="flags">0</span> | Coins: <span id="coins">0</span></p>
+    <p>Highscore: <span id="highscore">0</span></p>
+    <p>Biome: <span id="biomeName">Cave</span></p>
+    <p>Inventory:</p>
+    <div id="inventoryBar"></div>
+    <button id="dropButton">Drop</button>
+  </div>
+
+  <div id="gameOver" style="display: none">
+    <h1>Game over</h1>
+    <p>Mode: <span id="modeStats">Dungeon</span></p>
+    <p>Highscore: <span id="finalHighScore">0</span></p>
+    <p>Flags: <span id="finalFlags">0</span></p>
+    <button id="reloadButton" onclick="location.reload()">New game</button>
+    <button onclick="location.href='/'">Menu</button>
+  </div>
+
+</body>
+
+</html>

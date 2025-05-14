@@ -89,6 +89,6 @@ function handleFlag(x, y, tile) {
 
 function handleNote(x, y) {
     const message = notesPool[Math.floor(Math.random() * notesPool.length)];
-    alert(`${tileChars.note} Записка: ${message}`);
+    alert(`${tileChars.note} Note: ${message}`);
     movePlayerTo(x, y);
 }

@@ -11,7 +11,7 @@ const chestLootTable = [
 
 export function handleChest(x, y) {
     if (!inventory.remove(tiles.key)) {
-        alert("Нужен ключ, чтобы открыть сундук!");
+        alert("You need a key to open the chest!");
         return;
     }
 
@@ -21,17 +21,17 @@ export function handleChest(x, y) {
         case 'coins':
             const coinsFound = Math.floor(Math.random() * 4) + 2;
             inventory.addCoins(coinsFound);
-            alert(`Вы нашли ${coinsFound} монет!`);
+            alert(`You found ${coinsFound} coins!`);
             break;
 
         case tiles.bag:
             inventory.expand(1);
-            alert(`Вы нашли ${tileChars[loot]}! Ваш инвентарь расширен.`);
+            alert(`You found ${tileChars[loot]}! Your inventory has been expanded.`);
             break;
 
         default:
             inventory.add(loot);
-            alert(`Вы нашли ${tileChars[loot]}!`);
+            alert(`You found ${tileChars[loot]}!`);
             break;
     }
 

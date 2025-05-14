@@ -1,57 +1,50 @@
 # 🧩 ASCII MAZE
 
 🎮 *Emoji-themed dungeon crawler in HTML5 Canvas.*  
-Исследуй лабиринты, избегай зомби, собирай предметы и торгуй с NPC!
+Explore mazes, avoid zombies, collect items, and trade with NPCs!
 
-## 🚀 Демонстрация
+## 🚀 Demo
 
-[Открыть игру в браузере (GitHub Pages)](https://pomid0rkaaa.github.io/ascii_maze/)  
-*(или запусти локально — см. ниже)*
+[Open the game in your browser (GitHub Pages)](https://pomid0rkaaa.github.io/ascii_maze/)
 
-## 📦 Возможности
+## 📦 Features
 
-- ✅ Генерация случайной карты
-- 🧱 Туман войны (fog of war)
-- 🧟 Зомби и ловушки
-- 🧳 Инвентарь с предметами
-- 💰 Торговцы и сундуки
-- 🌀 Телепорты и флаги
-- 🕹️ Режимы: подземелье / на время / сбор флажков
+- ✅ Random map generation
+- 🧱 Fog of war
+- 🧟 Zombies
+- 🎒 Inventory
+- 💰 Traders and chests
+- 🌀 Portals and flags
+- 🕹️ Modes: dungeon / time / flags
+- 🗺️ Biomes
+- and more...
 
-## 🖥️ Установка и запуск
+Or just open the `index.html` file manually in your browser.
 
-```bash
-git clone https://github.com/Pomid0rkaaa/ascii_maze.git
-cd ascii_maze
-# открой index.html в браузере
-```
-
-Или просто открой файл `index.html` вручную через браузер.
-
-## 🎯 Управление
-| Движение           |
+## 🎯 Controls
+| Movement           |
 | ------------------ |
 | `W`, `A`, `S`, `D` |
 | `Arrows`           |
-| `Swipes`           |            
+| `Swipes`           |
 
-## 🛠️ Стек
+## 🛠️ Tech Stack
 
 - HTML5 Canvas
-- Vanilla JavaScript (модули)
-- Эмодзи как тайлы и спрайты
+- Vanilla JavaScript (modules)
+- Emojis as tiles and sprites
 
-## 📌 TODO / Идеи
+## 📌 TODO / Ideas
 
-- ☑ Добавить предмет компасс
-- ☐ Обновить режим `На время`
-- ☐ Обновить режим `Сбор флажков`
-- ☐ Добавить музыку и звуки (когда-то)
+- ☑ Add compass item
+- ☐ Update `Time` mode
+- ☐ Update `Flags` mode
+- ☐ Add music and sound effects (someday)
 
-## 👨‍💻 Автор
+## 👨‍💻 Author
 
 [Pomid0rkaaa](https://github.com/Pomid0rkaaa)
 
 ---
 
-> Игра всё ещё в разработке. Приветствуются идеи, фидбэк и пулл-реквесты!
+> The game is still in development. Ideas, feedback, and pull requests are welcome!
