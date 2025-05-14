@@ -2,6 +2,7 @@ import { endGame, inventory, saveGameState } from "../main.js";
 import { drawMazeCanvas } from "./draw.js";
 import { handleChest } from "./handleChest.js";
 import { handleTrader } from './handleTrader.js'
+import { notesPool } from "./notes.js"
 import { tiles, itemTile, tileChars } from './tiles.js';
 import { isInBounds, updateUIDisplay } from './utils.js';
 import { mazeHeight, mazeWidth, maze, generateMaze } from './generation.js';
