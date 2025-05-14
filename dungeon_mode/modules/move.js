@@ -83,8 +83,8 @@ function handleFlag(x, y, tile) {
 
     inventory.captureFlag();
     saveGameState();
-    generateMaze();
     movePlayerTo(x, y);
+    generateMaze();
 }
 
 function handleNote(x, y) {
