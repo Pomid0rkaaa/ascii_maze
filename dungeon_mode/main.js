@@ -22,6 +22,7 @@ export function endGame() {
     getID('mazeCanvas').style.display = 'none';
     getID('stats').style.display = 'none';
     getID('menuButton').style.display = 'none';
+    getID('reloadButton').focus()
 }
 
 document.addEventListener('keydown', (event) => {
